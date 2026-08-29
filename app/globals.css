@@ -21,6 +21,7 @@
 }
 
 @layer components {
+  /* Dashboard components */
   .panel {
     @apply bg-ink-900 border border-ink-700 rounded-xl shadow-panel;
   }
@@ -43,4 +44,31 @@
   .label-field {
     @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-ink-300;
   }
-}
+
+  /* Auth components */
+  .glass-card {
+    @apply relative rounded-2xl border border-white/10 bg-navy-900/70 backdrop-blur-xl shadow-glass;
+  }
+  .auth-input {
+    @apply w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm
+      text-white placeholder:text-navy-500/80 transition
+      focus:border-teal-500 focus:bg-white/[0.07] focus:outline-none;
+  }
+  .auth-label {
+    @apply mb-1.5 block text-xs font-medium text-navy-500;
+  }
+  .btn-auth-primary {
+    @apply inline-flex w-full items-center justify-center gap-2 rounded-xl
+      bg-gradient-to-r from-teal-500 to-violet-500 px-4 py-3 text-sm font-semibold text-navy-950
+      transition hover:brightness-110 active:brightness-95
+      disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-auth-secondary {
+    @apply inline-flex w-full items-center justify-center gap-2 rounded-xl
+      border border-white/15 bg-white/5 px-4 py-3 text-sm font-semibold text-white
+      transition hover:bg-white/10 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .role-pill {
+    @apply flex-1 cursor-pointer rounded-xl border px-4 py-3 text-center text-sm font-semibold transition;
+  }
+    }
