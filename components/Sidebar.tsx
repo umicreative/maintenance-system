@@ -11,22 +11,33 @@ import {
   ListChecks,
   Wrench,
   LogOut,
+  UserCheck,
+  FilePlus2,
 } from 'lucide-react'
 import type { Profile } from '@/types'
 
 const adminLinks = [
   { href: '/admin', label: 'Overview', icon: LayoutDashboard },
   { href: '/admin/employees', label: 'Employees', icon: Users },
+  { href: '/admin/approvals', label: 'Approvals', icon: UserCheck },
   { href: '/admin/tasks', label: 'Work Orders', icon: ClipboardList },
 ]
 
 const employeeLinks = [{ href: '/employee', label: 'My Tasks', icon: ListChecks }]
 
+const clientLinks = [{ href: '/client', label: 'My Requests', icon: FilePlus2 }]
+
 export default function Sidebar({ profile }: { profile: Profile }) {
   const pathname = usePathname()
   const router = useRouter()
   const supabase = createClient()
-  const links = profile.role === 'super_admin' ? adminLinks : employeeLinks
+
+  const links =
+    profile.role === 'super_admin'
+      ? adminLinks
+      : profile.role === 'client'
+        ? clientLinks
+        : employeeLinks
 
   async function handleSignOut() {
     await supabase.auth.signOut()
@@ -73,7 +84,7 @@ export default function Sidebar({ profile }: { profile: Profile }) {
           <div className="min-w-0">
             <p className="truncate text-sm font-semibold text-ink-100">{profile.name}</p>
             <p className="truncate text-xs text-ink-400">
-              {profile.role === 'super_admin' ? 'Super Admin' : 'Employee'}
+              {profile.role === 'super_admin' ? 'Super Admin' : profile.role === 'client' ? 'Client' : 'Employee'}
             </p>
           </div>
         </div>
