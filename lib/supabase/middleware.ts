@@ -1,5 +1,4 @@
 import { createServerClient } from '@supabase/ssr'
-import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function updateSession(request: NextRequest) {
@@ -23,8 +22,7 @@ export async function updateSession(request: NextRequest) {
       },
     }
   )
-  // Refresh the auth token if needed — required so Server Components
-  // always see a valid session.
+
   const {
     data: { user },
   } = await supabase.auth.getUser()
@@ -33,14 +31,12 @@ export async function updateSession(request: NextRequest) {
   const isAuthRoute = path.startsWith('/login')
   const isProtectedRoute = path.startsWith('/admin') || path.startsWith('/employee')
 
-  // Not logged in and hitting a protected page -> bounce to /login
   if (!user && isProtectedRoute) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     return NextResponse.redirect(url)
   }
 
-  // Logged in and hitting /login -> send to the right dashboard
   if (user && isAuthRoute) {
     const { data: profile } = await supabase
       .from('users')
@@ -53,7 +49,6 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
-  // Role-gate: an employee can't browse into /admin/*
   if (user && path.startsWith('/admin')) {
     const { data: profile } = await supabase
       .from('users')
@@ -69,4 +64,4 @@ export async function updateSession(request: NextRequest) {
   }
 
   return response
-}
+    }
