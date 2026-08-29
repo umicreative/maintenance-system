@@ -39,13 +39,13 @@ export default function LoginPage() {
       .single()
 
     if (profile?.role === 'employee' && profile.approval_status === 'pending') {
-      router.push('/pending')
+      router.replace('/pending')
     } else if (profile?.role === 'super_admin') {
-      router.push('/admin')
+      router.replace('/admin')
     } else if (profile?.role === 'client') {
-      router.push('/client')
+      router.replace('/client')
     } else {
-      router.push('/employee')
+      router.replace('/employee')
     }
     router.refresh()
   }
