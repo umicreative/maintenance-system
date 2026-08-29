@@ -41,7 +41,7 @@ export default function Sidebar({ profile }: { profile: Profile }) {
 
   async function handleSignOut() {
     await supabase.auth.signOut()
-    router.push('/login')
+    router.replace('/login')
     router.refresh()
   }
 
