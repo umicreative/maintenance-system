@@ -7,8 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Industrial / maintenance palette — deep ink + signal amber (hazard/caution)
-        // and a cyan-teal for "in progress / systems ok" states.
+        // Dashboard palette (admin/employee/client shells)
         ink: {
           950: '#0B0F13',
           900: '#11161C',
@@ -21,19 +20,21 @@ module.exports = {
           200: '#C6CDD3',
           100: '#E7EAED',
         },
-        signal: {
-          500: '#F2A33A', // caution amber — used sparingly as the signature accent
-          600: '#D9861C',
-          400: '#F5B85F',
+        signal: { 500: '#F2A33A', 600: '#D9861C', 400: '#F5B85F' },
+        ok: { 500: '#2FB8A0', 600: '#22947F' },
+        alert: { 500: '#E0533D', 600: '#C43F2C' },
+
+        // Auth palette (login/signup/pending) — "checkpoint" identity
+        navy: {
+          950: '#070B18',
+          900: '#0D1428',
+          800: '#131C38',
+          700: '#1C2848',
+          600: '#2A3A63',
+          500: '#3F5286',
         },
-        ok: {
-          500: '#2FB8A0', // teal — completed / healthy
-          600: '#22947F',
-        },
-        alert: {
-          500: '#E0533D', // high priority red-orange
-          600: '#C43F2C',
-        },
+        teal: { 500: '#2DD4BF', 600: '#14B8A6', 400: '#5EEAD4' },
+        violet: { 500: '#8B7CF6', 600: '#7C6AEF', 400: '#A79BFA' },
       },
       fontFamily: {
         display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
@@ -42,8 +43,13 @@ module.exports = {
       },
       boxShadow: {
         panel: '0 1px 0 0 rgba(255,255,255,0.04) inset, 0 1px 2px rgba(0,0,0,0.3)',
+        glass: '0 8px 40px rgba(0,0,0,0.45), 0 1px 0 0 rgba(255,255,255,0.06) inset',
+      },
+      backgroundImage: {
+        'mesh-navy':
+          'radial-gradient(circle at 15% 10%, rgba(45,212,191,0.16), transparent 40%), radial-gradient(circle at 85% 25%, rgba(139,124,246,0.18), transparent 45%), radial-gradient(circle at 50% 100%, rgba(45,212,191,0.10), transparent 50%)',
       },
     },
   },
   plugins: [],
-}
+          }
